@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead class="thead-dark">
+             <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">
+                   Seleccionar
+                </th>
+             </tr>
+         </thead>
+         <tbody>
+             <tr *ngFor="let busines of business; let i = index">
+                 <td>{{busines}}</td>
+                 <td>
+                    <div class="form-check">
+                        <input class="form-check-input position-static" type="checkbox" 
+                        id="blankCheckbox" value="option1" aria-label="..." (change)="$event.target.checked ? agregar( i +1 ) : quitar(i + 1)">
+                    </div>
+                 </td>
+             </tr>
+         </tbody>
+        </table>
+    </div>
+    <app-business_info [businessSelecteds]="checks" ></app-business_info>
+</div>

@@ -1,0 +1,94 @@
+<button class="btn btn-primary pull-right" (click)="loadInfo()">Cargar informacion</button>
+<div class="row">
+
+  <!-- FORM -->
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body p-4">
+
+        <!-- FORM -->
+        <form #business_infoForm="ngForm" (ngSubmit)="addBusine(business_infoForm)">
+          <!-- THE Id's business_info -->
+          <input type="hidden" name="entityId" #entityId="ngModel" [(ngModel)]="business_infoService.selectedBusines.entityId">
+
+          <div class="form-group">
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="business_infoService.selectedBusines.name"
+              placeholder="Enter your FullName" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <div class="input-field col-s12">
+              <input type="text" name="identificationNumber" #name="ngModel" [(ngModel)]="business_infoService.selectedBusines.identificationNumber"
+                placeholder="Enter your identificationNumber" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="expirationDate" #name="ngModel" [(ngModel)]="business_infoService.selectedBusines.expirationDate"
+              placeholder="Enter your expirationDate" class="form-control" type="date">
+          </div>
+
+          <div class="form-group">
+            <div class="input-field col-s12">
+              <input type="text" name="contactName" #name="ngModel" [(ngModel)]="business_infoService.selectedBusines.contactName"
+                value="0" placeholder="Enter your contactName" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-field col-s12">
+              <input type="text" name="contactMail" #name="ngModel" [(ngModel)]="business_infoService.selectedBusines.contactMail"
+                value="0" placeholder="Enter your contactMail" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-field col-s12">
+              <input type="text" name="ipAddress" #name="ngModel" [(ngModel)]="business_infoService.selectedBusines.ipAddress"
+                value="0" placeholder="Enter your ipAddress" class="form-control">
+            </div>
+          </div>
+
+          <!-- <button class="btn btn-primary mr-2" (click)="resetForm(business_infoForm)">Clean</button> -->
+          <!-- <button class="btn btn-secondary">Save</button> -->
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- TABLE -->
+<div class="col-md-8">
+  <table class="table table-striped">
+    <thead>
+      <th>entityId</th>
+      <th>Name</th>
+      <th>identificationNumber</th>
+      <th>expirationDate</th>
+      <th>contactName</th>
+      <th>contactMail</th>
+      <th>ipAddress</th>
+      <th>Acciones</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let business_info of business_infoService.business">
+        <td>{{ business_info.entityId }}</td>
+        <td>{{ business_info.name }}</td>
+        <td>{{ business_info.identificationNumber }}</td>
+        <td>{{ business_info.expirationDate }}</td>
+        <td>{{ business_info.contactName }}</td>
+        <td>{{ business_info.contactMail }}</td>
+        <td>{{ business_info.ipAddress }}</td>
+        <!-- <td>{{ business_info.office }}</td> -->
+        <td>
+          <a (click)="editBusine(business_info)" class="btn btn-secondary btn-sm">
+            <i class="material-icons">edit</i>
+          </a>
+          <a (click)="deleteBusines(business_info.entityId, business_infoForm)" class="btn btn-danger btn-sm">
+            <i class="material-icons">delete</i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
